@@ -52,13 +52,14 @@ def Game(XorO,map):
         if(XorO=='X'):
             while isCorrectX!=True:
                 move=int(input("Enter your move X:(num)"))
-                if(map[move-1][0]!='X' or map[move-1][0]!='0'):
+                if(map[move-1][0]!='X' and map[move-1][0]!='0'):
                     map[move-1][0]='X'
                     PrintMap(map)
                     isCorrectX=True
                     if endGame(map)==True:
                         print("X win!")
                         isEnd=True
+                        isCorrect0=True
                         break
                 else:
                     print("Not correct move!Enter again!")
@@ -66,13 +67,14 @@ def Game(XorO,map):
             isCorrectX=False
             while isCorrect0!=True:
                 move = int(input("Enter your move 0:(num)"))
-                if (map[move-1][0] != 'X' or map[move-1][0] !='0'):
+                if (map[move-1][0] != 'X' and map[move-1][0] !='0'):
                     map[move-1][0]='0'
                     PrintMap(map)
                     isCorrect0=True
                     if endGame(map) == True:
                         print("0 win!")
                         isEnd = True
+                        isCorrectX=True
                         break
                 else:
                     print("Not correct move!Enter again!")
@@ -81,13 +83,14 @@ def Game(XorO,map):
         else:
             while isCorrect0!=True:
                 move = int(input("Enter your move 0:(num)"))
-                if (map[move-1][0] != 'X' or map[move-1][0] !='0'):
+                if (map[move-1][0] != 'X' and map[move-1][0] !='0'):
                     map[move-1][0] = '0'
                     PrintMap(map)
                     isCorrect0 = True
                     if endGame(map) == True:
                         print("0 win!")
                         isEnd = True
+                        isCorrectX=True
                         break
                 else:
                     print("Not correct move!Enter again!")
@@ -95,13 +98,14 @@ def Game(XorO,map):
             isCorrect0 = False
             while isCorrectX != True:
                 move = int(input("Enter your move X:(num)"))
-                if (map[move-1][0] != 'X' or map[move-1][0] !='0'):
+                if (map[move-1][0] != 'X' and map[move-1][0] !='0'):
                     map[move-1][0] = 'X'
                     PrintMap(map)
                     isCorrectX=True
                     if endGame(map) == True:
                         print("X win!")
                         isEnd = True
+                        isCorrect0=True
                         break
                 else:
                     print("Not correct move!Enter again!")
@@ -116,6 +120,7 @@ s='-'
 map=[["1"],["2"],["3"],["4"],["5"],["6"],["7"],["8"],["9"]]
 PrintMap(map)
 Game(X0,map)
+print("End Game!")
 
 
 
