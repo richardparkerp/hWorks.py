@@ -8,21 +8,37 @@ def PrintMap(map):
 
 
 def endGame(map):
-    if map[0][0] and map[1][0] and map[2][0]=='X' or '0':                   # 1 2 3
+    if map[0][0]=='X' and map[1][0]=='X' and map[2][0]=='X':                   # 1 2 3
         return True                                                         # 4 5 6
-    elif map[3][0] and map[4][0] and map[5][0]=='X' or '0':                 # 7 8 9
+    elif map[3][0]=='X' and map[4][0]=='X' and map[5][0]=='X':                 # 7 8 9
         return True
-    elif map[6][0] and map[7][0] and map[8][0]=='X' or '0':
+    elif map[6][0]=='X' and map[7][0]=='X' and map[8][0]=='X':
         return True
-    elif map[0][0] and map[3][0] and map[6][0]=='X' or '0':
+    elif map[0][0]=='X' and map[3][0]=='X' and map[6][0]=='X':
         return True
-    elif map[1][0] and map[4][0] and map[7][0]=='X' or '0':
+    elif map[1][0]=='X' and map[4][0]=='X' and map[7][0]=='X':
         return True
-    elif map[2][0] and map[5][0] and map[8][0]=='X' or '0':
+    elif map[2][0]== 'X' and map[5][0]=='X' and map[8][0]=='X':
         return True
-    elif map[0][0] and map[4][0] and map[8][0]=='X' or '0':
+    elif map[0][0]=='X' and map[4][0]=='X' and map[8][0]=='X':
         return True
-    elif map[2][0] and map[4][0] and map[6][0]=='X' or '0':
+    elif map[2][0]=='X' and map[4][0]=='X' and map[6][0]=='X':
+        return True
+    elif map[0][0]=='0' and map[1][0]=='0' and map[2][0]=='0':              # 1 2 3
+        return True                                                         # 4 5 6
+    elif map[3][0]=='0' and map[4][0]=='0' and map[5][0]=='0':              # 7 8 9
+        return True
+    elif map[6][0]=='0' and map[7][0]=='0' and map[8][0]=='0':
+        return True
+    elif map[0][0]=='0' and map[3][0]=='0' and map[6][0]=='0':
+        return True
+    elif map[1][0]=='0' and map[4][0]=='0' and map[7][0]=='0':
+        return True
+    elif map[2][0]== '0' and map[5][0]=='0' and map[8][0]=='0':
+        return True
+    elif map[0][0]=='0' and map[4][0]=='0' and map[8][0]=='0':
+        return True
+    elif map[2][0]=='0' and map[4][0]=='0' and map[6][0]=='0':
         return True
     else:
         return False
@@ -30,44 +46,67 @@ def endGame(map):
 
 def Game(XorO,map):
     isEnd=False
-    isCorrect=False
+    isCorrectX=False
+    isCorrect0=False
     while isEnd!=True:
         if(XorO=='X'):
-            while isCorrect!=True:
-                move=int(input("Enter your move:(num)"))
-                if(map[move-1][0]!='X'or'0'):
+            while isCorrectX!=True:
+                move=int(input("Enter your move X:(num)"))
+                if(map[move-1][0]!='X' or map[move-1][0]!='0'):
                     map[move-1][0]='X'
-                    isCorrect=True
+                    PrintMap(map)
+                    isCorrectX=True
                     if endGame(map)==True:
                         print("X win!")
                         isEnd=True
-            isCorrect=False
-            while isCorrect!=True:
-                move = int(input("Enter your move:(num)"))
-                if (map[move-1][0] != 'X' or '0'):
+                        break
+                else:
+                    print("Not correct move!Enter again!")
+                    isCorrectX=False
+            isCorrectX=False
+            while isCorrect0!=True:
+                move = int(input("Enter your move 0:(num)"))
+                if (map[move-1][0] != 'X' or map[move-1][0] !='0'):
                     map[move-1][0]='0'
+                    PrintMap(map)
+                    isCorrect0=True
                     if endGame(map) == True:
                         print("0 win!")
                         isEnd = True
-                    isCorrect = True
+                        break
+                else:
+                    print("Not correct move!Enter again!")
+                    isCorrect0 = False
+            isCorrect0 = False
         else:
-            while isCorrect != True:
-                move = int(input("Enter your move:(num)"))
-                if (map[move-1][0] != 'X' or '0'):
+            while isCorrect0!=True:
+                move = int(input("Enter your move 0:(num)"))
+                if (map[move-1][0] != 'X' or map[move-1][0] !='0'):
                     map[move-1][0] = '0'
+                    PrintMap(map)
+                    isCorrect0 = True
                     if endGame(map) == True:
                         print("0 win!")
                         isEnd = True
-                    isCorrect = True
-            isCorrect = False
-            while isCorrect != True:
-                move = int(input("Enter your move:(num)"))
-                if (map[move-1][0] != 'X' or '0'):
+                        break
+                else:
+                    print("Not correct move!Enter again!")
+                    isCorrect0 = False
+            isCorrect0 = False
+            while isCorrectX != True:
+                move = int(input("Enter your move X:(num)"))
+                if (map[move-1][0] != 'X' or map[move-1][0] !='0'):
                     map[move-1][0] = 'X'
+                    PrintMap(map)
+                    isCorrectX=True
                     if endGame(map) == True:
                         print("X win!")
                         isEnd = True
-                    isCorrect = True
+                        break
+                else:
+                    print("Not correct move!Enter again!")
+                    isCorrectX = False
+            isCorrectX = False
 
 
 
