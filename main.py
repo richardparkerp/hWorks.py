@@ -95,14 +95,23 @@ def biggest_dict(**kwargs):
     for name,value in kwargs.items():
         my_dict[name]=value
 
-print(my_dict)
+# print(my_dict)
 
 biggest_dict(world="asdsd",asda="asdasd")
 
-print(my_dict)
+# print(my_dict)
 
 
 
+# 2. Создайте словарь с количеством элементов не менее 5-ти. Поменяйте местами первый
+# и последний элемент объекта. Удалите второй элемент. Добавьте в конец ключ «new_key» со
+# значением «new_value». Выведите на печать итоговый словарь. Важно, чтобы словарь остался
+# тем же (имел тот же адрес в памяти).
+
+dict={"1":"one","2":"two","4":"four","5":"five"}
+
+print(dict)
+dict["1"],dict["5"]=dict["5"],dict["1"]
+print(dict)
 
 
-# kwargs = {"a" = 1, "b" = 2, "c"= 3}
