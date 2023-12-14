@@ -91,5 +91,18 @@ asd=[1,2,2,2,3,4,5,6,7,8,9,9,10]
 
 my_dict={"first_one":"we can do it"}
 
-print(type(my_dict)
+def biggest_dict(**kwargs):
+    for name,value in kwargs.items():
+        my_dict[name]=value
 
+print(my_dict)
+
+biggest_dict(world="asdsd",asda="asdasd")
+
+print(my_dict)
+
+
+
+
+
+# kwargs = {"a" = 1, "b" = 2, "c"= 3}
