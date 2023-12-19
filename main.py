@@ -95,6 +95,11 @@ def biggest_dict(**kwargs):
     for name,value in kwargs.items():
         my_dict[name]=value
 
+def pucking_dict(**kwargs):
+    return kwargs
+def unpucking(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}:{value}")
 # print(my_dict)
 
 biggest_dict(world="asdsd",asda="asdasd")
@@ -108,10 +113,72 @@ biggest_dict(world="asdsd",asda="asdasd")
 # значением «new_value». Выведите на печать итоговый словарь. Важно, чтобы словарь остался
 # тем же (имел тот же адрес в памяти).
 
-dict={"1":"one","2":"two","4":"four","5":"five"}
+# dict={"1":"one","2":"two","3":"three","4":"four"}
+#
+# print(dict)
+# first_key,last_key=list(dict.keys())[0],list(dict.keys())[-1]
+# dict[first_key],dict[last_key]=dict[last_key],dict[first_key]
+# dict={last_key if k==first_key else first_key if k==last_key else k:v for k, v in dict.items()}
+# print(dict)
+# second_key=list(dict.keys())[1]
+# del dict[second_key]
+# print(dict)
+# dict["new_key"]="new value"
+# print(dict)
 
-print(dict)
-dict["1"],dict["5"]=dict["5"],dict["1"]
-print(dict)
+
+#  Есть некоторый словарь, который хранит названия стран и столиц. Название страны
+# используется в качестве ключа, название столицы в качестве значения. Необходимо
+# реализовать: добавление данных, удаление данных, поиск данных, редактирование данных,
+# сохранение и загрузку данных (используя упаковку и распаковку).
+
+my_dict={"Kazakhstan":"Astana","Russia":"Moscow","Canada":"Ottawa"}
+
+choise='-1'
+
+while choise!="0":
+    print("1 - Add new element\n2 - Remove element\n3 - Search element\n4 - Edit element\n5 - Save\n6 - Update dictianory")
+    choise=input("Enter ur choise:")
+    if choise=="1":
+        new_key=input("Enter country name:")
+        new_value=input("Enter capital city name:")
+        my_dict[new_key]=new_value
+        print("New element added")
+        print("----------------------------------------------------")
+    elif choise=="2":
+        key_del=input("Enter country name to be deleted:")
+        del my_dict[key_del]
+        print("Element removed!")
+        print("----------------------------------------------------")
+    elif choise=="3":
+        search_element=input("Enter the name search element:")
+        if search_element in my_dict:
+            print(my_dict[search_element])
+        else:
+            print("This element does not exist ")
+    elif choise=="4":
+        edit_key=input("Enter edit country name:")
+        if edit_key in my_dict:
+            edit_value=input("Enter new value:")
+            my_dict[edit_key]=edit_value
+        else:
+            print("This element does not exist ")
+    elif choise=="5":
+        print(my_dict)
+    elif choise=="6":
+        inp=input("1 - pucking\n2 - unpucking:")
+
+        if inp=="1":
+            my_dict.update(pucking_dict(USA="Washington"))
+            print(my_dict)
+        elif inp=="2":
+            unpucking(**my_dict)
+        else:
+            print("Error")
+    else:
+        print("Error")
+
+
+
 
 
