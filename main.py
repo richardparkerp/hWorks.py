@@ -47,36 +47,75 @@ matrixFunc()
 
 # Задание №3.
 # Написать рекурсивную функцию, которая по заданному целому числу возвращает n-e число Фибоначчи. Ряд Фибоначчи 0, 1, 1, 2, 3, 5, 8, 13,……
-#
-# Output:
-# fibonacci number 1 = 1
-# fibonacci number 2 = 1
-# fibonacci number 3 = 2
-# fibonacci number 4 = 3
-# fibonacci number 5 = 5
-# fibonacci number 6 = 8
-# fibonacci number 7 = 13
-# fibonacci number 8 = 21
-# fibonacci number 9 = 34
-# fibonacci number 10 = 55
-#
+
+def n_fibonachi(n):
+    if n<1:
+        return 1
+    else:
+        return n_fibonachi(n-1)+n_fibonachi(n-2)
+
+fib_val=4
+# print(n_fibonachi(fib_val))
+
 # Задание №4.
 # Напишите функцию, которая проверяет является ли число степенью двойки. Если истинно выведите True, иначе False.
-#
 # Input
 #  8
 # Output
 #  True
-#
-#
+def two_digit(n):
+    if n%2==0:
+        return True
+    else:
+        return False
+
+# print(two_digit(12))
+
+
 # Задание №5
-#
 # Реализовать инженерный калькулятор, для всех арифметических действий, включая нахождение факториала, Фибоначчи, и всех тригонометрических функций, также возведения числа в степени.
 # В ходе решения, допустимо использования модуля math, функции определяемой пользователем, рекурсивной функции и лямбда-функции.
 # Реализуйте диалог с пользователем.
-#
-#
-#
+import math
+isEnd=False
+while isEnd!=True:
+    print("1 - Нахождение Фибоначи \n2 - Тригонаметрчиские фцнкий \n3 - Возведенгие числа в степень \n  ")
+    choise = input("Выберите опреацию - ")
+    if choise =="1":
+        fib=int(input("Введите число : (не меньше 1)"))
+        if fib>1:
+            print(n_fibonachi(fib))
+        else:
+            print("Введите снова!")
+    elif choise =="2":
+        num=int(input("Введите ваше число - "))
+        print("1 - синус \n2 - косинус")
+        temp=input("Ваш выбор - ")
+        if temp=="1":
+            print(math.sin(num))
+        elif temp=="2":
+            print(math.cos(num))
+        else:
+            print("Ошибка выбора!")
+    elif choise=="3":
+        num=int(input("Введите возведимое число:"))
+        isTrue=False
+        while isTrue!=True:
+            s=int(input("Введите степень в котрое нужно возвести: (больше нуля)"))
+            if s>0:
+                print(f"answer is {num**s}")
+                isTrue=True
+    elif choise=="0":
+        isEnd=True
+    else :
+        print("Неверная команда! Введите снова!")
+
+
+
+
+
+
+
 # Модули и пакеты
 #
 # Задание №1. Спроектировать программу для определения победителя на выборах.
