@@ -77,54 +77,84 @@ def two_digit(n):
 # В ходе решения, допустимо использования модуля math, функции определяемой пользователем, рекурсивной функции и лямбда-функции.
 # Реализуйте диалог с пользователем.
 import math
-isEnd=False
-while isEnd!=True:
-    print("1 - Нахождение Фибоначи \n2 - Тригонаметрчиские фцнкий \n3 - Возведенгие числа в степень \n  ")
-    choise = input("Выберите опреацию - ")
-    if choise =="1":
-        fib=int(input("Введите число : (не меньше 1)"))
-        if fib>1:
-            print(n_fibonachi(fib))
-        else:
-            print("Введите снова!")
-    elif choise =="2":
-        num=int(input("Введите ваше число - "))
-        print("1 - синус \n2 - косинус")
-        temp=input("Ваш выбор - ")
-        if temp=="1":
-            print(math.sin(num))
-        elif temp=="2":
-            print(math.cos(num))
-        else:
-            print("Ошибка выбора!")
-    elif choise=="3":
-        num=int(input("Введите возведимое число:"))
-        isTrue=False
-        while isTrue!=True:
-            s=int(input("Введите степень в котрое нужно возвести: (больше нуля)"))
-            if s>0:
-                print(f"answer is {num**s}")
-                isTrue=True
-    elif choise=="0":
-        isEnd=True
-    else :
-        print("Неверная команда! Введите снова!")
-
-
-
-
-
+# isEnd=False
+# while isEnd!=True:
+#     print("1 - Нахождение Фибоначи \n2 - Тригонаметрчиские фцнкий \n3 - Возведенгие числа в степень \n  ")
+#     choise = input("Выберите опреацию - ")
+#     if choise =="1":
+#         fib=int(input("Введите число : (не меньше 1)"))
+#         if fib>1:
+#             print(n_fibonachi(fib))
+#         else:
+#             print("Введите снова!")
+#     elif choise =="2":
+#         num=int(input("Введите ваше число - "))
+#         print("1 - синус \n2 - косинус")
+#         temp=input("Ваш выбор - ")
+#         if temp=="1":
+#             print(math.sin(num))
+#         elif temp=="2":
+#             print(math.cos(num))
+#         else:
+#             print("Ошибка выбора!")
+#     elif choise=="3":
+#         num=int(input("Введите возведимое число:"))
+#         isTrue=False
+#         while isTrue!=True:
+#             s=int(input("Введите степень в котрое нужно возвести: (больше нуля)"))
+#             if s>0:
+#                 print(f"answer is {num**s}")
+#                 isTrue=True
+#     elif choise=="0":
+#         isEnd=True
+#     else :
+#         print("Неверная команда! Введите снова!")
 
 
 # Модули и пакеты
-#
 # Задание №1. Спроектировать программу для определения победителя на выборах.
-# Пользователю предоставляется список кандидатов, каждый из голосующих делает свой выбор. Выбранный кандидат добавляется в список. В итоге имеется неизменяемый список кандидатов.
+# Пользователю предоставляется список кандидатов, каждый из голосующих делает свой выбор.
+# Выбранный кандидат добавляется в список. В итоге имеется неизменяемый список кандидатов.
 # Определить победителя, в зависимости от количества встречаемости в списке кандидата.
 # Определить количество голосов победителя.
 # В случае, если будет двое победителей, сделать сортировку по длине слова между ними и выбрать победителя с минимальным количеством букв в имени.
-#
-#
-# Кандидаты в выборы: Аскаров, Бекмуханов, Ернур, Пешая, Карим, Шаримазданов и т.д.
-# Вы отдаете голос за:
-# Победитель выборов: Ернур.
+
+condidats=["Elcin","Putin","Nazarbaev","Stalin","Mavrodi"]
+# print(' '.join(condidats))
+votes=[]
+for id,val in enumerate(condidats):
+    print(f"{id+1} - {val}")
+
+for i in range(10):
+    isTrue=False
+    while isTrue!=True:
+        vote=int(input(f"User number {i+1} Indicate your vote: "))
+        if vote<=len(condidats):
+            votes.append(condidats[vote-1])
+            isTrue=True
+        else:
+            print("Wrong choice!Indicate your vote again!")
+
+votes_count={}
+for i in range(5):
+    votes_count[condidats[i]]=votes.count(condidats[i])
+
+
+max_value=0
+for i in votes_count:
+    if votes_count[i]>max_value:
+        max_value=votes_count[i]
+
+winners=[]
+for i in votes_count:
+    if votes_count[i]==max_value:
+        winners.append(i)
+winner=""
+for i in winners:
+    if len(winner)<len(i):
+        winner=i
+
+print(f"Winner is {winner}")
+
+
+
