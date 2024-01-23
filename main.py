@@ -22,11 +22,14 @@ while(sum<=0):
           "0 - Exit")
     choise=input("YOUR CHOISE : ")
     if choise=="1":
-        print(f"{sum/420}USD")
+        answer = sum/420
+        print("Anwer %.2f" % answer + "USD")
     elif choise=="2":
-        print(f"{sum/510}EUR")
+        answer = sum / 510
+        print("Anwer %.2f" % answer + "EUR")
     elif choise=="3":
-        print(f"{sum/5.8}RUB")
+        answer = sum / 5.6
+        print("Anwer %.2f" % answer + "RUB")
     elif choise==0:
         print("bye bye!")
     else:
