@@ -24,9 +24,11 @@ print(arr[0])
 if int(arr[0])<19:
     print(int(arr[0]))
     # btn_moisturizers=driver.find_element(By.CLASS_NAME,"btn btn-primary")
-    # btn_moisturizers=WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME, "btn btn-primary")))
     btn_moisturizers = driver.find_element(By.LINK_TEXT, "Buy moisturizers")
     btn_moisturizers.click()
+
+
+
 elif int(arr[0])>34:
     btn_sunscreens = driver.find_element(By.LINK_TEXT, "Buy sunscreens")
     btn_sunscreens.click()
