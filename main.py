@@ -1,31 +1,58 @@
-# Функция plus_two() выполняет одну простую задачу — выводит результат
-# сложения переданного в нее числа 2 и значения переменной number.
-# В переменную number должно быть передано число. Обработайте ситуацию,
-# если в эту переменную переданы данные какого-то другого типа. В случае ошибки напечатайте в консоли сообщение
-# «Ожидаемый тип данных — число!».
-# Запустите код и проверьте работу кода в консоли.
-# Подсказка:
-# Используйте конструкцию try/except.В процессе поиска решения попробуйте вывести в консоль сумму строки и числа, изучите сообщение об ошибке.
+import tkinter as tk
+import requests
 
-def plus_two(val,number):
-    try:
-        print(val+number)
-    except TypeError:
-        print("Ожидаемый тип данных - число!")
-        print(str(val) + str(number))
+# Не понял как делать поиск по id поэтому решил сделать по параметру posts
 
 
-plus_two(2,"212")
 
 
-# Напишите программу, которая позволяет получить доступ к элементу массива,
-# индекс которого выходит за границы, и обработаем соответствующее исключение.
 
-def get_val(arr,idx):
-    try:
-        print(arr[idx])
-    except IndexError:
-        print("Вы вышли за границу массива! Программа выдаст вам последий элемент массива : " , end="")
-        print(arr[len(arr)-1])
+window = tk.Tk()
+window.minsize(500,500)
+entr = tk.Entry(
+    window,
+    fg="black",
+    bg="white",
+    font=("Arial Bold", 18),
+    width=25)
 
-print(get_val([1,2,3,4],5))
+label = tk.Label(
+    window,
+    fg="black",
+    bg="white",
+    font=("Arial Bold",20),
+    width=40,
+    height=20)
+def get_info_from_entry():
+    global entr
+    global label
+    if entr.get()!="":
+        try:
+            post_num=int(entr.get())
+            answer=requests.get(f"https://jsonplaceholder.typicode.com/posts/",params=str(post_num))
+            print(answer.json())
+            label["text"]=answer.text
+        except:
+            print(entr.get())
+            print("Error!")
+
+
+
+
+label_info=tk.Label(window,text="Enter index:",fg="black",font=("Arial Bold",18))
+label_info.grid(row=0,column=0)
+entr.grid(row=1,column=0,columnspan=3,sticky="EW")
+button_search=tk.Button(
+    window,
+    text="OK",
+    fg="white",
+    background="green",
+    font=("Arial Bold",18),
+    width=5,
+    height=1,
+    command=get_info_from_entry)
+button_search.grid(row=1,column=5)
+label.grid(row=3,column=0)
+
+
+window.mainloop()
