@@ -1,61 +1,138 @@
-# Отрефакторить программу с прошлой домашней работы
-# ИЛИ калькулятор с практической работы на ООП стиль.
+# Реализуйте класс «Автомобиль». Необходимо хранить в полях класса:
+# название модели, год выпуска, производителя, объем двигателя, цвет машины, цену.
+# Реализуйте методы класса для ввода данных, вывода данных,
+# реализуйте доступ к отдельным полям через методы класса.
 
-import tkinter as tk
-
-
-
-
-
-class Calculator(tk.Tk):
+class Car():
     def __init__(self):
-        super().__init__()
-        self.operation=""
-        for i in range(1,4):
-            for j in range(3):
-                value=(i-1)*3+j+1
-                self.button=tk.Button(self,text=f"{value}",width=5,height=5,background="gray",fg="red",font=("Arial Bold",20),command=lambda x=value:self.press(x))
-                self.button.grid(row=i,column=j)
-        self.plus_button = tk.Button(self, text="+", width=5, height=3, background="gray", foreground="red",
-                                font=("Arial Bold", 20), command=lambda x="+": self.press(x))
-        self.plus_button.grid(row=1, column=3)
-        self.mult_button = tk.Button(self, text="*", width=5, height=3, background="gray", foreground="red",
-                                font=("Arial Bold", 20), command=lambda x="*": self.press(x))
-        self.mult_button.grid(row=2, column=3)
-        self.min_button = tk.Button(self, text="-", width=5, height=3, background="gray", foreground="red",
-                               font=("Arial Bold", 20), command=lambda x="-": self.press(x))
-        self.min_button.grid(row=3, column=3)
-        self.div_button = tk.Button(self, text="/", width=5, height=3, background="gray", foreground="red",
-                               font=("Arial Bold", 20), command=lambda x="/": self.press(x))
-        self.div_button.grid(row=4, column=3)
-        self.eq_button = tk.Button(self, text="=", width=5, height=3, background="gray", foreground="red",
-                              font=("Arial Bold", 20), command=lambda x=self.operation: self.eq(x))
-        self.eq_button.grid(row=0, column=3)
-        self.zero_button = tk.Button(self, text="0", width=5, height=3, background="gray", foreground="red",
-                                font=("Arial Bold", 20), command=lambda x="0": self.press(x))
-        self.zero_button.grid(row=4, column=0, columnspan=3, sticky="EW")
+        self.modelName=""
+        self.year_of_issue=1900
+        self.manufacturer=""
+        self.engine_capacity=0.0
+        self.color=""
+        self.price=0.0
 
-        self.label = tk.Label(
-            self,
-            text="",
-            fg="black",
-            bg="white",
-            font=("Arial Bold", 10),
-            width=5,
-            height=5)
-        self.label.grid(row=0, column=0, columnspan=3, sticky="EW")
+    def isnertInfo(self):
+        info=""
+        isCorrect=False
+        while isCorrect!=True:
+            info=input("Enter model name: ")
+            if info:
+                self.modelName=info
+                isCorrect=True
+        isCorrect=False
+        while isCorrect!=True:
+            info=int(input("Year of issue: "))
+            if info:
+                self.year_of_issue=info
+                isCorrect=True
 
-    def press(self,num):
-        self.operation+=str(num)
-        self.label["text"]=self.operation
-        print(num)
+        isCorrect=False
+        while isCorrect!=True:
+            info=input("Enter manufacturer: ")
+            if info:
+                self.manufacturer=info
+                isCorrect=True
+        isCorrect=False
+        while isCorrect!=True:
+            info=float(input("Enter engine capacity: "))
+            if info:
+                self.engine_capacity=info
+                isCorrect=True
+        isCorrect=False
+        while isCorrect!=True:
+            info=input("Enter color of car: ")
+            if info:
+                self.color=info
+                isCorrect=True
+        isCorrect=False
+        while isCorrect!=True:
+            info=float(input("Enter the price of the car: "))
+            if info:
+                self.price=info
+                isCorrect=True
 
-    def eq(self,val):
-        answer=eval(val)
-        self.label["text"]+="="
-        self.label["text"]+=str(answer)
+        print("Well done. Information saved!")
+
+    def printInfo(self):
+        print(f"Model name : {self.modelName}")
+        print(f"Year of issue : {self.year_of_issue}")
+        print(f"Manufacture : {self.manufacturer}")
+        print(f"Color : {self.color}")
+        print(f"Price : {self.price}")
+
+    def set_name(self,new_name):
+        if type(new_name)==str:
+            self.modelName=new_name
+    def get_name(self):
+        return self.modelName
+
+    def set_color(self,new_color):
+        if type(new_color)==str:
+            self.color=new_color
+
+    def get_color(self):
+        return self.color
 
 
 
-calc=Calculator()
-calc.mainloop()
+car=Car()
+car.isnertInfo()
+car.printInfo()
+
+
+
+# Реализуйте класс «Книга».
+# Необходимо хранить в полях класса: название книги, год выпуска, издателя, жанр, автора, цену.
+# Реализуйте методы класса для ввода данных, вывода данных, реализуйте доступ к отдельным полям через
+# модификаторы доступа и свойства
+
+
+
+class Book():
+    def __init__(self):
+        self.name=""
+        self.year_of_issue=None
+        self.publisher=""
+        self.jenre=""
+        self.author=""
+        self.price=None
+
+    def initBook(self):
+        # было поздно и к сожалению е было не было времени на проверку введенных данных
+        self.name=input("Enter book name: ")
+        self.year_of_issue=input("Enter year of issue: ")
+        self.publisher=input("Enter publisher name: ")
+        self.jenre=input("Enter jenre type: ")
+        self.author=input("Enter author name: ")
+        self.price=input("Enter the price: ")
+
+    def printInfo(self):
+        print(f"Book name: {self.name}")
+        print(f"Year of issue: {self.year_of_issue}")
+        print(f"Publisher name: {self.publisher}")
+        print(f"Jenre name: {self.jenre}")
+        print(f"Author name: {self.author}")
+        print(f"Price: {self.price}")
+
+
+    @property
+    def _name(self):
+        return self.name
+
+    @_name.setter
+    def _name(self):
+        self.name=input("Enter name: ")
+
+    @property
+    def _author(self):
+        return self.name
+
+    @_author.setter
+    def _author(self):
+        self.author=input("Enter author name: ")
+
+
+
+book=Book()
+book.printInfo()
