@@ -1,35 +1,31 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.action_chains import ActionChains
+# Функция plus_two() выполняет одну простую задачу — выводит результат
+# сложения переданного в нее числа 2 и значения переменной number.
+# В переменную number должно быть передано число. Обработайте ситуацию,
+# если в эту переменную переданы данные какого-то другого типа. В случае ошибки напечатайте в консоли сообщение
+# «Ожидаемый тип данных — число!».
+# Запустите код и проверьте работу кода в консоли.
+# Подсказка:
+# Используйте конструкцию try/except.В процессе поиска решения попробуйте вывести в консоль сумму строки и числа, изучите сообщение об ошибке.
+
+def plus_two(val,number):
+    try:
+        print(val+number)
+    except TypeError:
+        print("Ожидаемый тип данных - число!")
+        print(str(val) + str(number))
 
 
-service = Service(ChromeDriverManager().install())
-option = Options()
-option.add_experimental_option("detach", True)
-driver = webdriver.Chrome(options=option,
-                          service=service)
-
-driver.get("https://weathershopper.pythonanywhere.com")
-
-temp=driver.find_element(By.ID,"temperature")
-arr=temp.text.split(' ')
-print(arr[0])
-
-if int(arr[0])<19:
-    print(int(arr[0]))
-    # btn_moisturizers=driver.find_element(By.CLASS_NAME,"btn btn-primary")
-    btn_moisturizers = driver.find_element(By.LINK_TEXT, "Buy moisturizers")
-    btn_moisturizers.click()
+plus_two(2,"212")
 
 
+# Напишите программу, которая позволяет получить доступ к элементу массива,
+# индекс которого выходит за границы, и обработаем соответствующее исключение.
 
-elif int(arr[0])>34:
-    btn_sunscreens = driver.find_element(By.LINK_TEXT, "Buy sunscreens")
-    btn_sunscreens.click()
+def get_val(arr,idx):
+    try:
+        print(arr[idx])
+    except IndexError:
+        print("Вы вышли за границу массива! Программа выдаст вам последий элемент массива : " , end="")
+        print(arr[len(arr)-1])
 
+print(get_val([1,2,3,4],5))
