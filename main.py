@@ -1,138 +1,68 @@
-# Реализуйте класс «Автомобиль». Необходимо хранить в полях класса:
-# название модели, год выпуска, производителя, объем двигателя, цвет машины, цену.
-# Реализуйте методы класса для ввода данных, вывода данных,
-# реализуйте доступ к отдельным полям через методы класса.
-
-class Car():
-    def __init__(self):
-        self.modelName=""
-        self.year_of_issue=1900
-        self.manufacturer=""
-        self.engine_capacity=0.0
-        self.color=""
-        self.price=0.0
-
-    def isnertInfo(self):
-        info=""
-        isCorrect=False
-        while isCorrect!=True:
-            info=input("Enter model name: ")
-            if info:
-                self.modelName=info
-                isCorrect=True
-        isCorrect=False
-        while isCorrect!=True:
-            info=int(input("Year of issue: "))
-            if info:
-                self.year_of_issue=info
-                isCorrect=True
-
-        isCorrect=False
-        while isCorrect!=True:
-            info=input("Enter manufacturer: ")
-            if info:
-                self.manufacturer=info
-                isCorrect=True
-        isCorrect=False
-        while isCorrect!=True:
-            info=float(input("Enter engine capacity: "))
-            if info:
-                self.engine_capacity=info
-                isCorrect=True
-        isCorrect=False
-        while isCorrect!=True:
-            info=input("Enter color of car: ")
-            if info:
-                self.color=info
-                isCorrect=True
-        isCorrect=False
-        while isCorrect!=True:
-            info=float(input("Enter the price of the car: "))
-            if info:
-                self.price=info
-                isCorrect=True
-
-        print("Well done. Information saved!")
-
-    def printInfo(self):
-        print(f"Model name : {self.modelName}")
-        print(f"Year of issue : {self.year_of_issue}")
-        print(f"Manufacture : {self.manufacturer}")
-        print(f"Color : {self.color}")
-        print(f"Price : {self.price}")
-
-    def set_name(self,new_name):
-        if type(new_name)==str:
-            self.modelName=new_name
-    def get_name(self):
-        return self.modelName
-
-    def set_color(self,new_color):
-        if type(new_color)==str:
-            self.color=new_color
-
-    def get_color(self):
-        return self.color
-
-
-
-car=Car()
-car.isnertInfo()
-car.printInfo()
-
-
-
-# Реализуйте класс «Книга».
-# Необходимо хранить в полях класса: название книги, год выпуска, издателя, жанр, автора, цену.
-# Реализуйте методы класса для ввода данных, вывода данных, реализуйте доступ к отдельным полям через
-# модификаторы доступа и свойства
-
-
-
+# Задания №1
+# Создайте классы Book и Article, которые реализуют метод word_count.
+# Напишите функцию total_words, которая принимает список документов и возвращает общее количество слов.
 class Book():
-    def __init__(self):
-        self.name=""
-        self.year_of_issue=None
-        self.publisher=""
-        self.jenre=""
-        self.author=""
-        self.price=None
+    def __init__(self,cnt):
+        self.words=cnt
+    def word_count(self):
+        return self.words
 
-    def initBook(self):
-        # было поздно и к сожалению е было не было времени на проверку введенных данных
-        self.name=input("Enter book name: ")
-        self.year_of_issue=input("Enter year of issue: ")
-        self.publisher=input("Enter publisher name: ")
-        self.jenre=input("Enter jenre type: ")
-        self.author=input("Enter author name: ")
-        self.price=input("Enter the price: ")
+class Article():
+    def __init__(self,cnt):
+        self.words=cnt
 
-    def printInfo(self):
-        print(f"Book name: {self.name}")
-        print(f"Year of issue: {self.year_of_issue}")
-        print(f"Publisher name: {self.publisher}")
-        print(f"Jenre name: {self.jenre}")
-        print(f"Author name: {self.author}")
-        print(f"Price: {self.price}")
+    def word_count(self):
+        return self.words
 
 
-    @property
-    def _name(self):
-        return self.name
+def total_words(arr):
+    total_count=0
+    for i in arr:
+        total_count+=i.word_count()
+    return total_count
 
-    @_name.setter
-    def _name(self):
-        self.name=input("Enter name: ")
+book=Book(5)
+art=Article(3)
+arr=[book,art]
 
-    @property
-    def _author(self):
-        return self.name
+print(total_words(arr))
 
-    @_author.setter
-    def _author(self):
-        self.author=input("Enter author name: ")
+# Задания №2
+# Создайте классы Box и Cylinder, которые реализуют метод volume. Напишите функцию total_volume, которая принимает список контейнеров и возвращает общий объем.
+
+class Box():
+    def __init__(self,val1,val2,val3):
+        self.side1=val1
+        self.side2=val2
+        self.side3=val3
+
+    def volume(self):
+        return self.side1*self.side3*self.side2
 
 
+class Cylinder():
+    def __init__(self,r,h):
+        self.r=r
+        self.h=h
 
-book=Book()
-book.printInfo()
+    def volume(self):
+        return 3.1415*self.h*self.r
+
+
+arr1=[Box(1,1,1),Box(1,1,1)]
+arr2=[Cylinder(1,1)]
+arr3=[arr1,arr2]
+
+
+def total_volume(arr):
+    total_volume=0.0
+    for i,j in arr:
+        for j in arr[i]:
+            total_volume+=arr[i,j].volume()
+
+    return total_volume
+
+print(total_volume(arr3))
+
+# Задания №3
+# Создайте классы Dog и Cat, которые реализуют метод make_sound. Напишите функцию play_sounds, которая принимает список объектов и вызывает метод make_sound если объект является экземпляром классов Dog или Cat. Используйте функцию isinstance.
