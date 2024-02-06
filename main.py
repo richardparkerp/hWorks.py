@@ -10,7 +10,7 @@ import tkinter as tk
 class Calculator(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.operation=""
+        self.operation="0"
         for i in range(1,4):
             for j in range(3):
                 value=(i-1)*3+j+1
@@ -29,7 +29,7 @@ class Calculator(tk.Tk):
                                font=("Arial Bold", 20), command=lambda x="/": self.press(x))
         self.div_button.grid(row=4, column=3)
         self.eq_button = tk.Button(self, text="=", width=5, height=3, background="gray", foreground="red",
-                              font=("Arial Bold", 20), command=lambda x=self.operation: self.eq(x))
+                              font=("Arial Bold", 20), command=lambda: self.eq())
         self.eq_button.grid(row=0, column=3)
         self.zero_button = tk.Button(self, text="0", width=5, height=3, background="gray", foreground="red",
                                 font=("Arial Bold", 20), command=lambda x="0": self.press(x))
@@ -46,12 +46,26 @@ class Calculator(tk.Tk):
         self.label.grid(row=0, column=0, columnspan=3, sticky="EW")
 
     def press(self,num):
-        self.operation+=str(num)
-        self.label["text"]=self.operation
-        print(num)
+        print(self.operation)
+        types="+-*/"
+        if "=" in self.operation:
+            self.operation=0
+            print(self.operation)
+        if self.operation != "":
+            if str(num) in types:
+                if self.operation[-1]=='+' or self.operation[-1]=='-' or self.operation[-1]=='*' or self.operation[-1]=='/':
+                    new_str=self.operation[:-1]+str(num)
+                    self.operation=new_str
+            else:
+                if self.operation=="0":
+                    self.operation=""
+            print(self.operation)
+            self.operation+=str(num)
+            self.label["text"]=self.operation
+            print(num)
 
-    def eq(self,val):
-        answer=eval(val)
+    def eq(self):
+        answer=eval(self.operation)
         self.label["text"]+="="
         self.label["text"]+=str(answer)
 
